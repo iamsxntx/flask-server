@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import os  # Importamos os para leer la variable de entorno PORT
 
-app = Flask(_name)  # CORREGIDO: __name_ con doble guion bajo
+app = Flask(__name__)  # CORREGIDO: __name_ con doble guion bajo
 
 # Guardar los últimos datos recibidos
 datos_sensores = {"temperatura": None, "humedad": None, "luz": None}
@@ -17,6 +17,6 @@ def recibir_datos():
 def enviar_datos():
     return jsonify(datos_sensores), 200
 
-if _name_ == '_main':  # CORREGIDO: __name_ con doble guion bajo
+if __name__ == '_main':  # CORREGIDO: __name_ con doble guion bajo
     port = int(os.environ.get("PORT", 10000))  # Render asigna el puerto dinámicamente
     app.run(host='0.0.0.0', port=port, debug=True)
